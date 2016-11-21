@@ -7,22 +7,21 @@ package com.epam.training.bigdata.hadoop.highestbid;
 
 import com.epam.training.bigdata.hadoop.highestbid.domain.UserAndCounter;
 import com.epam.training.bigdata.hadoop.highestbid.input.InputProvider;
+import com.epam.training.bigdata.hadoop.highestbid.input.impl.hdfs.HdfsInputProviderImpl;
 import com.epam.training.bigdata.hadoop.highestbid.input.impl.local.LocalFileSystemInputProviderImpl;
 import com.epam.training.bigdata.hadoop.highestbid.output.OutputProvider;
+import com.epam.training.bigdata.hadoop.highestbid.output.impl.hdfs.HdfsOutputProviderImpl;
 import com.epam.training.bigdata.hadoop.highestbid.output.impl.local.LocalFileSystemOutputProviderImpl;
 import com.epam.training.bigdata.hadoop.highestbid.service.UserCounterService;
 import com.epam.training.bigdata.hadoop.highestbid.service.impl.ConcurrentUserCounterServiceImpl;
 import com.epam.training.bigdata.hadoop.highestbid.util.Utils;
+import org.apache.hadoop.conf.Configuration;
 
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class HighestBidRunner {
-
-    private static final String HDFS_BASE_URL = "mapreduce.homework2.hdfs.uri";
-    private static final String INPUT_PATH_CONFIG = "mapreduce.homework2.inputpath";
-    private static final String OUTPUT_PATH_CONFIG = "mapreduce.homework2.outputpath";
 
     public static void main(String[] args) throws Exception {
         long startTime = System.currentTimeMillis();
@@ -32,8 +31,15 @@ public class HighestBidRunner {
         String outputPath = args[1];
         int topNumber = Integer.parseInt(args[2]);
 
-        InputProvider inputProvider = new LocalFileSystemInputProviderImpl(inputPath);
-        OutputProvider outputProvider = new LocalFileSystemOutputProviderImpl(outputPath);
+//        InputProvider inputProvider = new LocalFileSystemInputProviderImpl(inputPath);
+//        OutputProvider outputProvider = new LocalFileSystemOutputProviderImpl(outputPath);
+
+        Configuration configuration = new Configuration();
+        configuration.set("fs.default.name", "hdfs://localhost:9000");
+        InputProvider inputProvider = new HdfsInputProviderImpl(inputPath, configuration);
+        OutputProvider outputProvider = new HdfsOutputProviderImpl(outputPath, configuration);
+
+
         UserCounterService userCounterService = new ConcurrentUserCounterServiceImpl();
 
         Iterator<InputStream> inputStreamIterator = inputProvider.getInputStreamsOfFilesInDirectory();

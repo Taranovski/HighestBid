@@ -29,6 +29,7 @@ public class Utils {
             }
         }
         writer.flush();
+        writer.close();
     }
 
     public static List<UserAndCounter> getSortedUsersAndCountersList(Map<String, AtomicLong> userAndCounters) {

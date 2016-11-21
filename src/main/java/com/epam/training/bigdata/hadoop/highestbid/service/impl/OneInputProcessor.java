@@ -26,6 +26,7 @@ public class OneInputProcessor {
             intermediateResults.putIfAbsent(userId, new AtomicLong(0L));
             intermediateResults.get(userId).incrementAndGet();
         }
+        scanner.close();
         return intermediateResults;
     }
 
