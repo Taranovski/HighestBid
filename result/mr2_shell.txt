@@ -1,0 +1,1 @@
+java -Xms6g -Xmx6g -jar hadoop.highestbid-1.0-SNAPSHOT.jar /alyx/mr2/input /alyx/mr2/output/result.txt 500

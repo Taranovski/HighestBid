@@ -1,0 +1,17 @@
+Download the data set:
+
+http://goo.gl/lwgoxw
+
+Data description 
+
+http://contest.ipinyou.com/data.shtml
+
+Unzip these files and put them in HDFS system:
+
+bid.20130606.txt.bz2
+bid.20130607.txt.bz2
+bid.20130608.txt.bz2
+bid.20130609.txt.bz2
+bid.20130610.txt.bz2
+bid.20130611.txt.bz2
+bid.20130612.txt.bz2

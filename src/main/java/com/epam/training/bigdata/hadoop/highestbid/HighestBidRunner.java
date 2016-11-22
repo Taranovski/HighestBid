@@ -35,7 +35,8 @@ public class HighestBidRunner {
 //        OutputProvider outputProvider = new LocalFileSystemOutputProviderImpl(outputPath);
 
         Configuration configuration = new Configuration();
-        configuration.set("fs.default.name", "hdfs://localhost:9000");
+        //hardcoded hdfs uri here
+        configuration.set("fs.default.name", "hdfs://localhost:8020");
         InputProvider inputProvider = new HdfsInputProviderImpl(inputPath, configuration);
         OutputProvider outputProvider = new HdfsOutputProviderImpl(outputPath, configuration);
 
