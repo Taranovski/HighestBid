@@ -31,8 +31,12 @@ public class HighestBidRunner {
         String outputPath = args[1];
         int topNumber = Integer.parseInt(args[2]);
 
+        // local implementation
+
 //        InputProvider inputProvider = new LocalFileSystemInputProviderImpl(inputPath);
 //        OutputProvider outputProvider = new LocalFileSystemOutputProviderImpl(outputPath);
+
+        //hdfs implementation
 
         Configuration configuration = new Configuration();
         //hardcoded hdfs uri here

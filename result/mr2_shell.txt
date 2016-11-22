@@ -1,1 +1,7 @@
+for hdfs (need to ensure that hdfs implementation is in place):
+
 java -Xms6g -Xmx6g -jar hadoop.highestbid-1.0-SNAPSHOT.jar /alyx/mr2/input /alyx/mr2/output/result.txt 500
+
+for local (need to ensure that local implementation is in place):
+
+java -jar hadoop.highestbid-1.0-SNAPSHOT.jar c:\big_data_training\hadoop\2\ c:\111\222.txt 420
